@@ -1,0 +1,21 @@
+{
+  "name": "major-map",
+  "version": "1.0.0",
+  "description": "전국 학과 지도 — 전국 대학 학과를 계열과 이름으로 묶어 보는 진학 상담 도구",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node test/run.mjs",
+    "check:syntax": "node tools/check-syntax.mjs",
+    "data": "python tools/make_data.py"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "vite-plugin-singlefile": "^2.0.2"
+  }
+}
