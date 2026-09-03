@@ -1,0 +1,7 @@
+node_modules/
+dist/
+# 원자료는 저장소에 올리지 않는다. tools/make_data.py 로 다시 만든다.
+source/
+*.xlsx
+*.pdf
+.DS_Store
