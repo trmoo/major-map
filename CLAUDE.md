@@ -64,7 +64,7 @@
 
 ## ③ 현재 개발 상태와 다음 할 일
 
-**2026-09-01 — 1차 완성.** 탭 5 · 화면 6 · 시험 59가지 · 소스 10개 ·
+**2026-09-01 — 1차 완성 · 공개 배포 완료.** 탭 5 · 화면 6 · 시험 59가지 · 소스 10개 ·
 빌드 결과 `dist/index.html` **703KB** 한 파일(외부 자원 0개).
 
 ### 다음으로 미룬 것
@@ -172,9 +172,35 @@ const 꼬리들 = ['학과', '학부', '전공', '계열', '학군', '과정', '
 ⚠ vite 콘솔이 찍는 「539.97 kB」는 **바이트가 아니라 글자 수**다. 한글이 많아 실제는 703KB.
 ⚠ `esbuild.legalComments` 를 `'none'` 으로 두면 `/*!` 배너까지 지워진다.
 
-### 저장소
+### 저장소 (2026-09-01 첫 푸시 완료)
 https://github.com/trmoo/major-map — **공개(public)**.
 Pages: https://trmoo.github.io/major-map/
-⚠ **빈 저장소를 만들 때 Settings → Pages → Source 를 「GitHub Actions」 로 먼저 켜 둘 것.**
-브랜치 배포로 두면 빌드 안 한 원본이 서비스되어 **흰 화면**이 된다
-(`saints_dict`·`api-practice` 에서 실제로 겪었다).
+
+**★ 첫 푸시가 한 번에 깨끗하게 끝났다.** 사용자가 빈 저장소를 만들 때
+**Settings → Pages → Source 를 「GitHub Actions」 로 먼저 켜 두었기 때문**이다
+(`build_type: workflow`). 그래서 우리 워크플로 하나만 돌았고,
+깃허브가 자동으로 붙이는 `pages build and deployment`(Jekyll) 가 아예 생기지 않았다.
+배포본 MD5 가 로컬 `dist/index.html` 과 같은 것까지 확인했다(703,320바이트).
+
+⚠ **빈 저장소를 만들 때는 반드시 Pages Source 를 「GitHub Actions」 로 먼저 켤 것.**
+브랜치 배포(`build_type: legacy`)로 두면 빌드 안 한 원본이 서비스되어 **흰 화면**이 된다.
+⚠ **두 잡이 다 「성공」으로 찍혀 Actions 탭만 보면 모른다.** 크기로 확인한다 —
+`curl -sL https://trmoo.github.io/major-map/ | wc -c` 가 **703,320** 이면 정상,
+1KB 미만이면 브랜치 배포가 이긴 것이다(`saints_dict`·`api-practice` 에서 실제로 겪었다).
+
+### 확인에 쓴 명령
+이 PC 에 `gh` CLI 가 없다. 토큰은 깃 자격증명에서 꺼낸다.
+
+```bash
+TOKEN=$(printf 'protocol=https
+host=github.com
+
+' | git credential fill | grep '^password=' | cut -d= -f2-)
+curl -s -H "Authorization: Bearer $TOKEN" https://api.github.com/repos/trmoo/major-map/pages   # build_type 확인
+curl -s -H "Authorization: Bearer $TOKEN" 'https://api.github.com/repos/trmoo/major-map/actions/runs?per_page=5'
+```
+
+⚠ **curl 로 저장소를 만들 때 한글 설명을 `-d` 로 바로 넘기지 말 것** —
+셸 인코딩 탓에 「Problems parsing JSON」 이 난다. 파일로 써서 `--data-binary @파일` 로 보낸다.
+⚠ 깃 전역 `user.name` 이 비어 있어 폴더에 따로 넣었다
+(`user.name trmoo` · `user.email trmoo@users.noreply.github.com`).
