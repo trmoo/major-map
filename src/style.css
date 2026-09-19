@@ -360,3 +360,51 @@ a.btn { display: inline-block; text-decoration: none; }
    파일 고르기 칸은 눌러야 하므로 되살린다. */
 .dropzone > * { pointer-events: none; }
 .dropzone input[type="file"] { pointer-events: auto; cursor: pointer; }
+
+/* ── 학과 위치 지도 (2026-09-19) ──────────────────────── */
+.wmap-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 18px; align-items: start; margin-bottom: 14px; }
+@media (max-width: 900px) { .wmap-grid { grid-template-columns: minmax(0, 1fr); } }
+.wmap { display: block; max-width: 100%; height: auto; border-radius: 8px;
+  border: 1px solid var(--line); }
+.wmap-main .wmap { max-height: 82vh; margin: 0 auto; }
+.wmap-sea { fill: #f3f7fb; }
+.wmap-sido { stroke: #fff; stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.wmap-inset { fill: #f3f7fb; stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.wmap-island { fill: #d9a99b; stroke: #8b96a5; stroke-width: .8; vector-effect: non-scaling-stroke; }
+.wmap-dokdo { fill: #b97d6c; stroke: #8b96a5; stroke-width: .8; vector-effect: non-scaling-stroke; }
+.wmap-small { fill: var(--ink-sub); font-weight: 600; }
+.wmap-capbox { fill: none; stroke: var(--brand); stroke-width: 1.6; stroke-dasharray: 5 4;
+  vector-effect: non-scaling-stroke; }
+.wmap-caplabel { fill: var(--brand); font-weight: 800; paint-order: stroke;
+  stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+.wmap-label { fill: #4a5563; font-weight: 800; paint-order: stroke; stroke: rgba(255,255,255,.85);
+  stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+.wmap-label-sm { font-weight: 700; fill: #5a6675; }
+.wmap-empty { fill: #fff; stroke: #9aa5b3; stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.wmap-pt { cursor: pointer; outline: none; }
+.wmap-pt circle { fill: var(--accent); fill-opacity: .88; stroke: #fff; stroke-width: 1.4;
+  vector-effect: non-scaling-stroke; transition: fill-opacity .12s; }
+.wmap-pt.all circle { fill: var(--brand); fill-opacity: .8; }
+.wmap-pt text { fill: #fff; font-weight: 800; pointer-events: none; }
+.wmap-pt .wmap-ptname { fill: var(--ink); font-weight: 700; paint-order: stroke;
+  stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+.wmap-pt:hover circle, .wmap-pt:focus-visible circle { fill-opacity: 1; stroke: var(--ink); stroke-width: 2; }
+.wmap-pt.on circle { fill-opacity: 1; stroke: var(--ink); stroke-width: 3; }
+.wmap-legend { font-size: 14.5px; color: var(--ink-sub); margin: 8px 0 0; text-align: center; }
+.wmap-key { display: inline-block; width: 13px; height: 13px; border-radius: 50%;
+  vertical-align: -1px; }
+.wmap-key-on { background: var(--accent); }
+.wmap-key-off { background: #fff; border: 1.5px solid #9aa5b3; }
+.wmap-capwrap { margin-bottom: 14px; }
+.wmap-captitle { font-size: 15px; font-weight: 800; color: var(--brand); margin-bottom: 4px; }
+.wmap-side { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px;
+  background: var(--bg-soft); }
+.wmap-side h4 { margin: 0; font-size: 17px; }
+.wmap-side .tw { margin-bottom: 0; }
+.wmap-sidehead { display: flex; justify-content: space-between; align-items: center;
+  gap: 10px; margin-bottom: 10px; }
+.wmap-chips { margin: 0; gap: 5px; }
+.wmap-chip { font: inherit; font-size: 13.5px; padding: 2px 9px; border: 1px solid var(--line);
+  background: var(--bg-card); color: var(--ink); border-radius: 999px; cursor: pointer; }
+.wmap-chip:hover { border-color: var(--brand); color: var(--brand); }

@@ -13,11 +13,12 @@ import { meta } from './lib/data.js'
 
 import TAB_JIDO from './tabs/t1-jido.js'
 import TAB_CHATGI from './tabs/t2-chatgi.js'
+import TAB_WICHI from './tabs/t6-wichi.js'
 import TAB_IREUM from './tabs/t3-ireum.js'
 import TAB_DAEHAK from './tabs/t4-daehak.js'
 import TAB_ANNAE from './tabs/t5-annae.js'
 
-export const TABS = [TAB_JIDO, TAB_CHATGI, TAB_IREUM, TAB_DAEHAK, TAB_ANNAE]
+export const TABS = [TAB_JIDO, TAB_CHATGI, TAB_WICHI, TAB_IREUM, TAB_DAEHAK, TAB_ANNAE]
 
 let now = { tab: TABS[0].id, screen: TABS[0].screens[0].id }
 
@@ -102,6 +103,7 @@ function drawFooter() {
         '전국 학과 지도 · © 2026 티쳐무 · 모든 권리 보유 — 학교 진학 지도 목적으로만 이용해 주세요.'),
       h('p.foot-note',
         '학과 정보의 원자료는 교육부 ', b('「대학알리미」'), ' 공공데이터입니다(공공저작물 제1유형 — 출처표시). ',
+        '지도의 시·도 경계는 통계청(KOSTAT) 행정구역경계(2013)입니다. ',
         '이 앱은 이름·학번을 받지 않으며 서버가 없습니다.')))
 }
 
