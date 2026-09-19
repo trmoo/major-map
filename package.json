@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "test": "node test/run.mjs",
     "check:syntax": "node tools/check-syntax.mjs",
-    "data": "python tools/make_data.py"
+    "data": "python tools/make_data.py && python tools/make_map.py"
   },
   "devDependencies": {
     "vite": "^5.4.0",

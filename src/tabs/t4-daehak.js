@@ -17,6 +17,14 @@ import { 학과열기 } from './t2-chatgi.js'
 let 찾기 = ''
 let 고른번호 = null
 
+/** 다른 탭(위치 지도)에서 「이 대학 보기」로 넘어올 때 쓴다 */
+export function 대학열기(번호) {
+  고른번호 = 번호
+  찾기 = ''
+  location.hash = '#daehak/byul'
+  redraw()
+}
+
 /** 학과가 많은 순으로 미리 보여 줄 대학 몇 곳 */
 const 큰대학 = 모든대학.slice()
   .sort((a, b) => 대학줄(b.번호).length - 대학줄(a.번호).length)
@@ -63,6 +71,14 @@ function 자세히카드() {
   }
   const 묶음 = [...중별.entries()].sort((a, b) => b[1].length - a[1].length)
 
+  // 학과가 있는 곳 — 캠퍼스가 여럿인 대학은 학과마다 소재지가 다르다(성균관대 본교: 종로구·수원시).
+  const 곳 = new Map()
+  for (const r of 줄들) {
+    const k = `${r.시도} ${r.시군구}`
+    곳.set(k, (곳.get(k) || 0) + 1)
+  }
+  const 곳들 = [...곳.entries()].sort((a, b) => b[1] - a[1])
+
   return h('div',
     card(u.표시,
       cols(4,
@@ -70,6 +86,10 @@ function 자세히카드() {
         stat('학교종류', u.학교종류),
         stat('지역', `${u.지역} ${u.소재지}`.trim()),
         stat('설립', u.설립구분)),
+      곳들.length > 1
+        ? h('p', b('학과가 있는 곳: '), ...곳들.map(([k, n]) => tag(`${k} ${n}`, 'brand')),
+          h('span.dim', ' — 캠퍼스가 여러 곳입니다.'))
+        : null,
       h('h4', '계열 분포'),
       ratioBar(분포.map(([이름, 값]) => ({ 이름, 값 })), { 값글: (p) => `${p.이름} ${p.값}` }),
       h('div.row', ...분포.map(([g, n]) => tag(`${g} ${n}`, 'brand')))),

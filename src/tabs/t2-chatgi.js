@@ -16,6 +16,7 @@ import {
 import {
   meta, 학과찾기, 이웃학과, 소분류줄, 열쇠줄, 없음,
 } from '../lib/data.js'
+import { 지도주소 } from '../lib/place.js'
 
 let 검색어 = ''
 let 고른이름 = ''
@@ -85,7 +86,8 @@ function 자세히카드() {
       지역.length
         ? h('div',
           h('h4', '어느 지역에 있나'),
-          h('div.row', ...지역.map(([g, n]) => tag(`${g} ${n}`, 'brand'))))
+          h('div.row', ...지역.map(([g, n]) => tag(`${g} ${n}`, 'brand')),
+            button('📍 지도로 보기', () => { location.hash = 지도주소(하나.이름) }, { 주요: true })))
         : null),
 
     이웃.둘다.length
