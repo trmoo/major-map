@@ -90,8 +90,6 @@ npm run data         # source/ → src/data/major.json + map.json
 파이썬과 `openpyxl` 이 필요합니다. 원본 엑셀은 [공공데이터포털](https://www.data.go.kr/data/15119002/fileData.do)
 에서 내려받아 `source/키워드별 학과정보.xlsx` 로 두세요. (`source/` 는 저장소에 올리지 않습니다)
 
-자세한 개발 기록은 [`CLAUDE.md`](CLAUDE.md) 에 있습니다.
-
 ---
 
 © 2026 티쳐무 · 모든 권리 보유 — 학교 진학 지도 목적으로만 이용해 주세요.
