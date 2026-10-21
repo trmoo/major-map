@@ -112,14 +112,14 @@ function 지도(opt) {
     const 상 = 섬상자
     el.append(sv('rect', { x: 상.x - 4, y: 상.y - 14, width: 상.너비 + 8, height: 상.높이 + 22,
       class: 'wmap-inset', rx: 3 }))
-    el.append(sv('text', { x: 상.x, y: 상.y - 4, class: 'wmap-small', 'font-size': 10 * k }, '울릉도·독도'))
+    el.append(sv('text', { x: 상.x, y: 상.y - 4, class: 'wmap-small', 'font-size': 8 * k }, '울릉도·독도'))
     // 섬이 작아서 흰 테두리를 두르면 사라진다 — 짙은 색에 회색 테두리로 그린다.
     for (const s of 시도경계) if (s.섬) el.append(sv('path', { d: s.섬, class: 'wmap-island' }))
     el.append(sv('circle', { cx: 독도자리[0], cy: 독도자리[1], r: 2.2 * k, class: 'wmap-dokdo' }))
     el.append(sv('text', { x: 독도자리[0], y: 독도자리[1] + 12 * k, 'text-anchor': 'middle',
-      class: 'wmap-small', 'font-size': 9.5 * k }, '독도'))
+      class: 'wmap-small', 'font-size': 7.6 * k }, '독도'))
     el.append(sv('text', { x: 울릉도자리[0], y: 울릉도자리[1] + 13 * k, 'text-anchor': 'middle',
-      class: 'wmap-small', 'font-size': 9.5 * k }, '울릉도'))
+      class: 'wmap-small', 'font-size': 7.6 * k }, '울릉도'))
   }
 
   // 수도권 상자 (전국 지도에서만)
@@ -127,7 +127,7 @@ function 지도(opt) {
     const q = 수도권틀
     el.append(sv('rect', { x: q.x, y: q.y, width: q.너비, height: q.높이, class: 'wmap-capbox', rx: 2 }))
     el.append(sv('text', { x: q.x + q.너비 / 2, y: q.y - 5 * k, 'text-anchor': 'middle',
-      class: 'wmap-caplabel', 'font-size': 12 * k }, opt.수도권상자))
+      class: 'wmap-caplabel', 'font-size': 9.6 * k }, opt.수도권상자))
   }
 
   // 시·도 이름 (광역시는 점과 겹치므로 조금 아래에)
@@ -137,7 +137,7 @@ function 지도(opt) {
     const [x, y] = s.이름표
     el.append(sv('text', {
       x, y: 작게 && opt.광역시아래 ? y + 16 * k : y, 'text-anchor': 'middle',
-      class: `wmap-label${작게 ? ' wmap-label-sm' : ''}`, 'font-size': (작게 ? 11 : 14) * k,
+      class: `wmap-label${작게 ? ' wmap-label-sm' : ''}`, 'font-size': (작게 ? 8.8 : 11.2) * k,
     }, s.이름))
   }
 
@@ -159,7 +159,7 @@ function 지도(opt) {
     && a[0] < m[2] && a[2] > m[0] && a[1] < m[3] && a[3] > m[1])
   const 이름자리 = (p, i) => {
     const r = 반지름(p.대학.size)
-    const 글 = 10.5 * k
+    const 글 = 8.4 * k
     const 너비 = p.이름표.length * 글 * 1.02
     for (const 쪽 of [1, -1]) {
       const x = 쪽 > 0 ? p.좌표[0] + r + 2.5 * k : p.좌표[0] - r - 2.5 * k - 너비
@@ -184,11 +184,11 @@ function 지도(opt) {
     sv('title', {}, `${p.이름표}${광역시인가(p.시도) || p.시도 === p.이름표 ? '' : ` (${p.시도})`} — 대학 ${n}곳`),
     sv('circle', { cx: p.좌표[0], cy: p.좌표[1], r }),
     n >= 2 ? sv('text', { x: p.좌표[0], y: p.좌표[1], 'text-anchor': 'middle', 'dominant-baseline': 'central',
-      'font-size': Math.min(r * 1.05, 15 * k) }, String(n)) : null)
+      'font-size': Math.min(r * 1.05, 12 * k) }, String(n)) : null)
     const 자리 = opt.점이름 ? 이름자리(p, i) : null
     if (자리) {
       g.append(sv('text', { x: 자리.x, y: p.좌표[1], 'dominant-baseline': 'central',
-        class: 'wmap-ptname', 'font-size': 10.5 * k }, p.이름표))
+        class: 'wmap-ptname', 'font-size': 8.4 * k }, p.이름표))
     }
     el.append(g)
   }
